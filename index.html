@@ -3,404 +3,398 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fremont Jamaat — Ashara Mubaraka 1448H</title>
-
-    <!-- Leaflet CSS (open-source map, no API key needed) -->
+    <meta name="description" content="Travel and accommodation information for Mehmano attending Ashara Mubaraka 1448 at the Fremont Relay Center.">
+    <title>Ashara Mubaraka 1448 Relay Center — Fremont</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --navy:          #0d1b3e;
-            --navy-mid:      #162450;
-            --navy-light:    #1e3068;
-            --red:           #b22234;
-            --red-light:     #cc2b40;
-            --gold:          #c9a227;
-            --gold-light:    #e8c44a;
-            --off-white:     #f5f7fa;
-            --text-dark:     #1a1a1a;
-            --text-muted:    #5a6070;
-            --border:        #dde2ed;
+            --navy:      #0d1b3e;
+            --navy-mid:  #162450;
+            --red:       #b22234;
+            --gold:      #c9a227;
+            --gold-lt:   #e8c44a;
+            --bg:        #f5f7fa;
+            --white:     #ffffff;
+            --border:    #dde2ed;
+            --text:      #1a1a1a;
+            --muted:     #5a6070;
         }
 
         html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--off-white);
-            color: var(--text-dark);
-        }
-
-        /* ── NAVBAR ───────────────────────────────── */
+        /* ── NAV ─────────────────────────────────── */
         nav {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+            position: sticky; top: 0; z-index: 1000;
             background: var(--navy);
             border-bottom: 3px solid var(--red);
         }
         .nav-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            height: 62px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+            max-width: 1100px; margin: 0 auto; padding: 0 2rem;
+            height: 60px; display: flex; align-items: center; justify-content: space-between;
         }
-        .nav-logo {
-            font-family: 'Amiri', serif;
-            font-size: 1.2rem;
-            color: #fff;
-            text-decoration: none;
-            font-weight: 700;
-        }
-        .nav-logo span { color: var(--gold); }
-        .nav-links { list-style: none; display: flex; gap: 0.25rem; }
+        .nav-logo { color: #fff; font-weight: 800; font-size: 1rem; text-decoration: none; }
+        .nav-links { list-style: none; display: flex; gap: .15rem; }
         .nav-links a {
-            color: rgba(255,255,255,.75);
-            text-decoration: none;
-            padding: 0.45rem 0.9rem;
-            border-radius: 5px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            transition: color 0.2s, background 0.2s;
+            color: rgba(255,255,255,.7); text-decoration: none;
+            padding: .4rem .85rem; border-radius: 5px;
+            font-size: .82rem; font-weight: 500;
+            transition: color .2s, background .2s;
         }
         .nav-links a:hover { color: #fff; background: rgba(255,255,255,.1); }
 
-        /* ── HERO ─────────────────────────────────── */
+        /* ── HERO ────────────────────────────────── */
         .hero {
-            background: #0d2e1a;
-            background-image:
-                radial-gradient(circle at 15% 60%, rgba(255,255,255,.04) 0%, transparent 50%),
-                radial-gradient(circle at 85% 20%, rgba(178,34,52,.08) 0%, transparent 45%);
+            background:
+                linear-gradient(158deg, #05140bf2 0%, #0e3219e0 45%, #0a2414f0 100%),
+                radial-gradient(at 16% 60%, rgba(214,170,61,.18) 0%, transparent 48%),
+                radial-gradient(at 84% 28%, rgba(214,170,61,.13) 0%, transparent 42%),
+                #051409;
             color: #fff;
             text-align: center;
-            padding: 5rem 2rem 5rem;
+            padding: 5rem 2rem;
             position: relative;
             overflow: hidden;
-            min-height: 85vh;
+            min-height: 90vh;
             display: flex;
             align-items: center;
         }
-
-        /* Islamic geometric tile overlay */
         .hero::before {
             content: '';
-            position: absolute;
-            inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M40 0l5 15h15l-12 9 5 15-13-9-13 9 5-15-12-9h15zm0 50l5 15h15l-12 9 5 15-13-9-13 9 5-15-12-9h15zM0 40l5 15h15l-12 9 5 15-13-9-13 9 5-15-12-9h15zM80 40l5 15h15l-12 9 5 15-13-9-13 9 5-15-12-9h15z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            position: absolute; inset: 0;
+            background: url('https://ashara1448relay.njjamaat.org/assets/pattern-overlay-CSTDvmAO.webp') center/cover no-repeat;
+            opacity: .18;
+            mix-blend-mode: overlay;
             pointer-events: none;
         }
-
         .hero-content { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; width: 100%; }
 
         .bismillah {
-            font-family: 'Amiri', serif;
-            font-size: 2rem;
-            color: var(--gold);
-            margin-bottom: 2rem;
-            letter-spacing: .04em;
+            font-size: 1.9rem; color: var(--gold);
+            margin-bottom: 1.8rem; letter-spacing: .04em;
         }
         .hero-title {
-            font-family: 'Inter', sans-serif;
             font-size: clamp(2.4rem, 6vw, 5rem);
-            font-weight: 800;
+            font-weight: 900;
             line-height: 1.08;
-            letter-spacing: -.02em;
-            margin-bottom: 1.75rem;
-            color: #fff;
+            letter-spacing: -.03em;
+            margin-bottom: 1.5rem;
         }
         .hero-notice {
             font-size: clamp(.85rem, 1.5vw, 1rem);
             font-weight: 700;
             color: #fff;
             max-width: 740px;
-            margin: 0 auto 1.25rem;
-            line-height: 1.6;
+            margin: 0 auto 1.1rem;
+            line-height: 1.65;
         }
         .hero-desc {
-            font-size: clamp(.85rem, 1.4vw, .975rem);
+            font-size: clamp(.82rem, 1.35vw, .95rem);
             font-weight: 400;
-            color: rgba(255,255,255,.8);
-            max-width: 620px;
-            margin: 0 auto 2.5rem;
+            color: rgba(255,255,255,.78);
+            max-width: 600px;
+            margin: 0 auto 2.2rem;
             line-height: 1.7;
         }
         .hero-cta {
             display: inline-block;
-            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            background: linear-gradient(135deg, var(--gold), var(--gold-lt));
             color: #1a1200;
             padding: .85rem 2.6rem;
             border-radius: 50px;
             font-weight: 700;
             font-size: 1rem;
             text-decoration: none;
-            letter-spacing: .01em;
-            transition: transform .2s, box-shadow .2s;
             box-shadow: 0 4px 20px rgba(201,162,39,.35);
+            transition: transform .2s, box-shadow .2s;
         }
         .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(201,162,39,.5); }
 
-        .hero-address {
-            margin-top: 2rem;
-            color: rgba(255,255,255,.55);
-            font-size: .82rem;
+        /* countdown */
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2.5rem;
+        }
+        .countdown-label {
+            font-size: .65rem;
+            text-transform: uppercase;
+            letter-spacing: .12em;
+            color: rgba(255,255,255,.5);
+            margin-bottom: .25rem;
+        }
+        .countdown-block {
+            background: rgba(255,255,255,.08);
+            border: 1px solid rgba(255,255,255,.12);
+            border-radius: 10px;
+            padding: .75rem 1.2rem;
+            min-width: 72px;
+            text-align: center;
+        }
+        .countdown-block .num {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--gold);
+            line-height: 1;
+        }
+        .countdown-until {
+            font-size: .75rem;
+            color: rgba(255,255,255,.5);
+            margin-top: 1rem;
+            letter-spacing: .05em;
         }
 
-        /* ── COMMON SECTION ───────────────────────── */
+        /* ── SECTIONS ────────────────────────────── */
         .section { padding: 5rem 2rem; }
-        .section-alt { background: #fff; }
-        .container { max-width: 1200px; margin: 0 auto; }
-
-        .section-header { text-align: center; margin-bottom: 3rem; }
-        .section-label {
+        .section-white { background: #fff; }
+        .container { max-width: 1100px; margin: 0 auto; }
+        .section-eyebrow {
             text-transform: uppercase;
             letter-spacing: .15em;
-            font-size: .7rem;
-            font-weight: 600;
+            font-size: .68rem;
+            font-weight: 700;
             color: var(--red);
-            margin-bottom: .4rem;
+            margin-bottom: .5rem;
         }
         .section-title {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--navy);
+            letter-spacing: -.025em;
+            margin-bottom: 1rem;
+        }
+        .section-desc { color: var(--muted); max-width: 580px; line-height: 1.75; font-size: .9rem; }
+
+        /* ── TRAVEL TABS ─────────────────────────── */
+        .tabs {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: .4rem;
+            background: rgba(13,27,62,.07);
+            border: 1px solid rgba(13,27,62,.07);
+            border-radius: 999px;
+            padding: .4rem;
+            max-width: 720px;
+            margin: 0 auto 1.5rem;
+        }
+        .tab-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: .85rem 1rem;
             font-family: 'Inter', sans-serif;
-            font-size: 2.2rem;
+            font-size: .95rem;
             font-weight: 800;
             color: var(--navy);
-            margin-bottom: .9rem;
-            letter-spacing: -.02em;
+            border-radius: 999px;
+            transition: background .2s, color .2s, box-shadow .2s;
+            text-align: center;
         }
-        .section-desc {
-            color: var(--text-muted);
-            max-width: 580px;
+        .tab-btn:hover { background: rgba(13,27,62,.06); }
+        .tab-btn.active {
+            background: var(--navy);
+            color: var(--gold-lt);
+            box-shadow: 0 12px 30px rgba(13,27,62,.22);
+        }
+
+        .tab-panel { display: none; }
+        .tab-panel.active {
+            display: block;
+            background: #fff;
+            border: 1px solid var(--border);
+            border-top: 3px solid var(--red);
+            border-radius: 28px;
+            box-shadow: 0 24px 70px rgba(13,27,62,.1);
+            padding: 2rem 2.25rem;
+            max-width: 900px;
             margin: 0 auto;
+        }
+
+        /* travel content */
+        .travel-eyebrow {
+            font-size: .7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .14em;
+            color: var(--red);
+            margin-bottom: .5rem;
+        }
+        .travel-title {
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: var(--navy);
+            letter-spacing: -.02em;
+            margin-bottom: 1.5rem;
+        }
+        .travel-body { max-width: 760px; }
+        .travel-body p {
+            color: var(--text);
             line-height: 1.75;
+            margin-bottom: 1rem;
             font-size: .9rem;
         }
-
-        /* ── INFORMATION CARDS ────────────────────── */
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
-            gap: 1.75rem;
-        }
-        .info-card {
-            background: #fff;
-            border-radius: 14px;
-            padding: 2rem;
-            border: 1px solid var(--border);
-            border-top: 4px solid var(--red);
-            transition: transform .2s, box-shadow .2s;
-        }
-        .info-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,.07); }
-        .info-card-icon {
-            width: 46px; height: 46px;
-            background: linear-gradient(135deg, var(--navy-mid), var(--navy));
-            border-radius: 12px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.4rem;
-            margin-bottom: 1.2rem;
-        }
-        .info-card h3 { font-family: 'Inter', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--navy); margin-bottom: .6rem; }
-        .info-card p { color: var(--text-muted); line-height: 1.65; font-size: .875rem; }
-
-        /* ── MAP ──────────────────────────────────── */
-        #map-container {
-            height: 500px;
-            border-radius: 16px;
-            overflow: hidden;
-            border: 3px solid var(--navy-mid);
-            box-shadow: 0 8px 32px rgba(13,27,62,.15);
+        .travel-note {
+            font-size: .82rem;
+            color: var(--muted);
+            font-style: italic;
+            margin-top: 1.25rem;
         }
 
-        /* ── AIRPORTS ─────────────────────────────── */
-        .airports-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.6rem;
+        /* airport list */
+        .airport-list { list-style: none; margin: 1rem 0 1.25rem; }
+        .airport-list li {
+            padding: .7rem 1rem;
+            border-left: 3px solid var(--red);
+            margin-bottom: .5rem;
+            background: var(--bg);
+            border-radius: 0 6px 6px 0;
+            font-size: .9rem;
+            line-height: 1.55;
         }
-        .airport-card {
-            background: #fff;
-            border-radius: 16px;
-            overflow: hidden;
-            border: 1px solid var(--border);
-            transition: transform .2s, box-shadow .2s;
-        }
-        .airport-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(0,0,0,.1); }
+        .airport-list li strong { color: var(--navy); }
 
-        .airport-header {
-            background: linear-gradient(135deg, var(--navy-mid), var(--navy));
-            padding: 1.4rem 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-        .airport-code {
-            background: var(--red);
-            color: #fff;
-            font-size: 1.45rem;
-            font-weight: 800;
-            padding: .45rem .95rem;
-            border-radius: 8px;
-            letter-spacing: .05em;
-            flex-shrink: 0;
-        }
-        .airport-name-line { color: #fff; font-size: 1rem; font-weight: 600; }
-        .airport-full-name { color: rgba(255,255,255,.65); font-size: .75rem; margin-top: .15rem; }
-
-        .airport-body { padding: 1.5rem; }
-        .airport-stats {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: .9rem;
-            margin-bottom: 1.2rem;
-        }
-        .airport-stat {
-            background: var(--off-white);
-            border-radius: 8px;
-            padding: .7rem;
-            text-align: center;
-        }
-        .stat-val { font-size: 1.15rem; font-weight: 700; color: var(--navy); }
-        .stat-lbl { font-size: .68rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: .05em; }
-
-        .airport-tags { display: flex; flex-wrap: wrap; gap: .45rem; }
+        /* tags */
+        .tags { display: flex; flex-wrap: wrap; gap: .5rem; margin: .75rem 0; }
         .tag {
             background: rgba(13,27,62,.07);
-            color: var(--navy-light);
-            border: 1px solid rgba(13,27,62,.15);
-            padding: .2rem .7rem;
+            color: var(--navy-mid);
+            border: 1px solid rgba(13,27,62,.14);
+            padding: .25rem .85rem;
             border-radius: 50px;
-            font-size: .72rem;
-            font-weight: 500;
+            font-size: .78rem;
+            font-weight: 600;
         }
 
-        .directions-btn {
-            display: block;
-            margin-top: 1.1rem;
-            padding: .75rem;
-            background: linear-gradient(135deg, var(--red), var(--red-light));
-            color: #fff;
-            text-align: center;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 700;
-            font-size: .83rem;
-            transition: opacity .2s;
-        }
-        .directions-btn:hover { opacity: .88; }
-
-        /* ── ACCOMMODATION ────────────────────────── */
-        .hotels-grid {
+        /* ── HOTEL GRID ──────────────────────────── */
+        .hotel-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 1.4rem;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.1rem;
+            margin-top: 1.5rem;
         }
         .hotel-card {
             background: #fff;
-            border-radius: 12px;
-            padding: 1.6rem;
             border: 1px solid var(--border);
-            transition: transform .2s, box-shadow .2s;
-        }
-        .hotel-card:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(0,0,0,.07); }
-        .hotel-stars { color: var(--gold); font-size: .85rem; margin-bottom: .4rem; }
-        .hotel-name { font-weight: 600; font-size: .95rem; color: var(--navy); margin-bottom: .25rem; }
-        .hotel-address { color: var(--text-muted); font-size: .78rem; margin-bottom: .9rem; line-height: 1.5; }
-        .hotel-dist {
-            display: inline-flex;
-            align-items: center;
-            gap: .3rem;
-            background: rgba(13,27,62,.07);
-            color: var(--navy-light);
-            border: 1px solid rgba(13,27,62,.15);
-            padding: .2rem .75rem;
-            border-radius: 50px;
-            font-size: .73rem;
-            font-weight: 600;
-        }
-
-        /* ── CONTACT ──────────────────────────────── */
-        .contact-wrap {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: start;
-        }
-        .contact-title {
-            font-family: 'Inter', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--navy);
-            margin-bottom: 1.5rem;
-            letter-spacing: -.02em;
-        }
-        .contact-item { display: flex; gap: 1rem; margin-bottom: 1.25rem; align-items: flex-start; }
-        .ci-icon {
-            width: 40px; height: 40px;
-            background: linear-gradient(135deg, var(--navy-mid), var(--navy));
-            border-radius: 10px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.05rem;
-            flex-shrink: 0;
-        }
-        .ci-label { display: block; font-weight: 600; font-size: .82rem; color: var(--navy); margin-bottom: .15rem; }
-        .ci-value { color: var(--text-muted); font-size: .85rem; line-height: 1.5; }
-
-        #contact-map {
-            height: 300px;
             border-radius: 12px;
-            overflow: hidden;
+            padding: 1.25rem 1.4rem;
+            transition: box-shadow .2s, transform .2s;
+        }
+        .hotel-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,.08); }
+        .hotel-meta { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: .4rem; }
+        .hotel-name { font-weight: 700; font-size: .92rem; color: var(--navy); line-height: 1.35; }
+        .hotel-dist-badge {
+            flex-shrink: 0; margin-left: .75rem;
+            background: rgba(178,34,52,.08); color: var(--red);
+            border: 1px solid rgba(178,34,52,.2);
+            padding: .2rem .6rem; border-radius: 50px;
+            font-size: .7rem; font-weight: 700; white-space: nowrap;
+        }
+        .hotel-address { font-size: .78rem; color: var(--muted); margin-bottom: .85rem; line-height: 1.45; }
+        .hotel-link {
+            display: inline-block; font-size: .78rem; font-weight: 600;
+            color: var(--navy-mid); text-decoration: none;
+            border-bottom: 1px solid rgba(22,36,80,.25);
+            transition: color .2s;
+        }
+        .hotel-link:hover { color: var(--red); }
+
+        /* ── FAQ ─────────────────────────────────── */
+        .faq-list { max-width: 760px; }
+        .faq-item { border: 1px solid var(--border); border-radius: 10px; margin-bottom: .75rem; overflow: hidden; }
+        .faq-q {
+            width: 100%; background: #fff; border: none; text-align: left;
+            padding: 1.1rem 1.4rem;
+            font-family: 'Inter', sans-serif; font-size: .92rem; font-weight: 700;
+            color: var(--navy); cursor: pointer;
+            display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+            transition: background .2s;
+        }
+        .faq-q:hover { background: var(--bg); }
+        .faq-q .chevron {
+            flex-shrink: 0; width: 20px; height: 20px;
+            border-right: 2.5px solid var(--red); border-bottom: 2.5px solid var(--red);
+            transform: rotate(45deg); transition: transform .25s; margin-top: -4px;
+        }
+        .faq-item.open .faq-q .chevron { transform: rotate(-135deg); margin-top: 4px; }
+        .faq-a { max-height: 0; overflow: hidden; transition: max-height .3s ease; background: #fff; }
+        .faq-item.open .faq-a { max-height: 400px; }
+        .faq-a-inner { padding: 0 1.4rem 1.25rem; font-size: .88rem; color: var(--muted); line-height: 1.75; }
+        .faq-a-inner a { color: var(--navy-mid); font-weight: 600; }
+
+        /* ── MAP ─────────────────────────────────── */
+        #map-el {
+            height: 460px; border-radius: 14px; overflow: hidden;
             border: 2px solid var(--navy-mid);
+            box-shadow: 0 6px 24px rgba(13,27,62,.12);
         }
+        .map-actions { margin-top: 1.25rem; display: flex; gap: .75rem; flex-wrap: wrap; }
+        .map-btn {
+            display: inline-flex; align-items: center; gap: .45rem;
+            background: var(--navy); color: #fff; text-decoration: none;
+            padding: .65rem 1.4rem; border-radius: 8px;
+            font-size: .85rem; font-weight: 600;
+            transition: background .2s;
+        }
+        .map-btn:hover { background: var(--navy-mid); }
 
-        /* ── FOOTER ───────────────────────────────── */
+        /* ── CONTACT ─────────────────────────────── */
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+        .contact-item { display: flex; gap: .85rem; margin-bottom: 1.25rem; align-items: flex-start; }
+        .ci-icon {
+            width: 38px; height: 38px;
+            background: linear-gradient(135deg, var(--navy-mid), var(--navy));
+            border-radius: 9px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1rem; flex-shrink: 0;
+        }
+        .ci-label { display: block; font-weight: 700; font-size: .8rem; color: var(--navy); margin-bottom: .2rem; }
+        .ci-value { color: var(--muted); font-size: .85rem; line-height: 1.5; }
+        .ci-value a { color: var(--navy-mid); font-weight: 600; text-decoration: none; }
+        #contact-map { height: 280px; border-radius: 12px; overflow: hidden; border: 2px solid var(--navy-mid); }
+
+        /* ── FOOTER ──────────────────────────────── */
         footer {
-            background: var(--navy);
-            border-top: 3px solid var(--red);
-            text-align: center;
-            padding: 1.75rem 2rem;
-            color: rgba(255,255,255,.5);
-            font-size: .82rem;
+            background: var(--navy); border-top: 3px solid var(--red);
+            text-align: center; padding: 2rem;
+            color: rgba(255,255,255,.45); font-size: .8rem;
         }
-        footer span { color: var(--gold); }
+        footer a { color: rgba(255,255,255,.7); text-decoration: none; }
+        footer a:hover { color: #fff; }
+        .gold { color: var(--gold); }
 
-        /* ── RESPONSIVE ───────────────────────────── */
+        /* ── RESPONSIVE ──────────────────────────── */
         @media (max-width: 768px) {
             .hero-title { font-size: 2.2rem; }
             .nav-links { display: none; }
             .section { padding: 3.5rem 1.25rem; }
-            .contact-wrap { grid-template-columns: 1fr; }
+            .contact-grid { grid-template-columns: 1fr; }
             #contact-map { height: 240px; }
-        }
-        @media (max-width: 480px) {
-            .hero-title { font-size: 1.85rem; }
-            .bismillah { font-size: 1.6rem; }
+            .tabs { overflow-x: auto; gap: 0; }
+            .tab-btn { padding: .65rem 1rem; font-size: .8rem; }
         }
     </style>
 </head>
 <body>
 
-<!-- ── NAVBAR ──────────────────────────────────────── -->
+<!-- ── NAV ───────────────────────────────────────── -->
 <nav>
     <div class="nav-inner">
         <a href="#" class="nav-logo">Fremont Jamaat</a>
         <ul class="nav-links">
             <li><a href="#information">Information</a></li>
-            <li><a href="#map">Map</a></li>
-            <li><a href="#airports">Airports</a></li>
-            <li><a href="#accommodation">Accommodation</a></li>
+            <li><a href="#travel">Travel Planning</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#map">Masjid Location</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </div>
 </nav>
 
-<!-- ── HERO ────────────────────────────────────────── -->
+<!-- ── HERO ──────────────────────────────────────── -->
 <section class="hero">
     <div class="hero-content">
         <div class="bismillah">بِسۡمِ ٱللهِ ٱلرَّحۡمَـٰنِ ٱلرَّحِيمِ</div>
@@ -410,370 +404,453 @@
             and only make travel arrangements after receiving Raza
         </p>
         <p class="hero-desc">
-            Travel and Accommodation information for Mehmano attending<br>
-            Ashara Mubarak 1448 in the Fremont Relay Center
+            Travel and accommodation information for Mehmano attending<br>
+            Ashara Mubaraka 1448 in the Fremont Relay Center
         </p>
         <a href="#information" class="hero-cta">View Important Info</a>
-        <p class="hero-address">📍&nbsp; Masjid e Mohammedi · 1121 Old Canyon Rd, Fremont, CA 94536</p>
+
+        <div class="countdown-until">Countdown</div>
+        <div class="countdown">
+            <div class="countdown-block">
+                <div class="countdown-label">Days</div>
+                <div class="num" id="cd-days">--</div>
+            </div>
+            <div class="countdown-block">
+                <div class="countdown-label">Hours</div>
+                <div class="num" id="cd-hours">--</div>
+            </div>
+            <div class="countdown-block">
+                <div class="countdown-label">Mins</div>
+                <div class="num" id="cd-mins">--</div>
+            </div>
+        </div>
+        <div class="countdown-until" style="margin-top:.6rem">Until Ashara Mubaraka 1448H</div>
     </div>
 </section>
 
-<!-- ── INFORMATION ─────────────────────────────────── -->
-<section class="section" id="information">
+<!-- ── INFORMATION ────────────────────────────────── -->
+<section class="section section-white" id="information">
     <div class="container">
-        <div class="section-header">
-            <p class="section-label">Welcome</p>
-            <h2 class="section-title">Ashara Mubaraka 1448H</h2>
-            <p class="section-desc">
-                Fremont Jamaat warmly welcomes all Mumineen to join the Ashara Mubaraka relay at
-                Masjid e Mohammedi. We are honoured to host the live relay of the sacred waaz of
-                our beloved Dai al-Mutlaq.
-            </p>
-        </div>
-        <div class="info-grid">
-            <div class="info-card">
-                <div class="info-card-icon">🕌</div>
-                <h3>Venue</h3>
-                <p>Masjid e Mohammedi, 1121 Old Canyon Road, Fremont, CA 94536.
-                The masjid serves as the primary relay centre for the Bay Area community during Ashara Mubaraka.</p>
-            </div>
-            <div class="info-card">
-                <div class="info-card-icon">📡</div>
-                <h3>Live Relay</h3>
-                <p>High-quality live video and audio relay of Ashara Mubaraka waaz will be broadcast
-                at the masjid daily throughout the ten sacred days. Full facilities will be available.</p>
-            </div>
-            <div class="info-card">
-                <div class="info-card-icon">✈️</div>
-                <h3>Getting Here</h3>
-                <p>Three major international airports serve the Fremont area — San Jose (SJC),
-                Oakland (OAK), and San Francisco (SFO) — all within 23 miles of the masjid.</p>
-            </div>
-            <div class="info-card">
-                <div class="info-card-icon">🤝</div>
-                <h3>Hospitality</h3>
-                <p>Fremont Jamaat will provide full hospitality arrangements for visiting Mumineen.
-                For accommodation assistance and any other queries, please contact the jamaat office.</p>
-            </div>
-        </div>
+        <div class="section-eyebrow">Welcome</div>
+        <h2 class="section-title">Important Information</h2>
+        <p class="section-desc">
+            Anjuman-e-Najmi (Fremont) humbly welcomes all Mumineen to be shaamil in the Barakat
+            of Waaz Talaqqi of Dai Imam al-Hussain AS, Syedna Aali Qadr Mufaddal Saifuddin TUS,
+            at the Fremont Relay Center.
+        </p>
     </div>
 </section>
 
-<!-- ── MAP ─────────────────────────────────────────── -->
-<section class="section section-alt" id="map">
+<!-- ── TRAVEL PLANNING ────────────────────────────── -->
+<section class="section" id="travel">
     <div class="container">
-        <div class="section-header">
-            <p class="section-label">Navigation</p>
-            <h2 class="section-title">Location &amp; Nearby Airports</h2>
-            <p class="section-desc">
-                Masjid e Mohammedi is centrally located in Fremont, CA with easy access from three
-                major Bay Area airports. Click any marker for details.
-            </p>
+        <div class="section-eyebrow">Travel</div>
+        <h2 class="section-title">Travel Planning</h2>
+        <p class="section-desc" style="margin-bottom:2.5rem">
+            Use the sections below to plan flights, local transportation, and accommodations.
+        </p>
+
+        <div class="tabs" role="tablist" aria-label="Travel information">
+            <button class="tab-btn active" role="tab" data-tab="flights">Flights</button>
+            <button class="tab-btn" role="tab" data-tab="transit">Local Transit</button>
+            <button class="tab-btn" role="tab" data-tab="hotels">Accommodation</button>
         </div>
-        <div id="map-container"></div>
-    </div>
-</section>
 
-<!-- ── AIRPORTS ────────────────────────────────────── -->
-<section class="section" id="airports">
-    <div class="container">
-        <div class="section-header">
-            <p class="section-label">Travel</p>
-            <h2 class="section-title">Nearby Airports</h2>
-            <p class="section-desc">
-                Three major airports provide convenient access to Fremont. All offer direct and
-                connecting flights from major US and international cities.
-            </p>
+        <!-- Flights -->
+        <div class="tab-panel active" id="tab-flights">
+            <div class="travel-eyebrow">Getting There &mdash; By Air</div>
+            <div class="travel-title">Flights</div>
+            <div class="travel-body">
+                <ul class="airport-list">
+                    <li>
+                        <strong>Recommended airport: San José International Airport &mdash; SJC (~12.8 miles).</strong>
+                        SJC is the closest major airport to the masjid and the preferred choice for guests with direct service.
+                        Driving time is typically about 20&ndash;25 minutes, depending on traffic.
+                    </li>
+                    <li>
+                        <strong>Oakland International Airport &mdash; OAK (~16.7 miles)</strong>
+                        is a convenient alternative served by many carriers including budget airlines.
+                        Driving time is typically about 30&ndash;35 minutes, depending on traffic.
+                        OAK is also accessible via BART to the Fremont station.
+                    </li>
+                    <li>
+                        <strong>San Francisco International Airport &mdash; SFO (~22.5 miles)</strong>
+                        is the main international airport for the Bay Area and offers the widest range of
+                        domestic and international flights. Driving time is typically about 35&ndash;45 minutes,
+                        depending on traffic. SFO has a direct BART connection inside the airport.
+                    </li>
+                </ul>
+                <p>Guests flying into OAK or SFO should plan for local rideshare, rental car, or BART + rideshare to reach the masjid.</p>
+                <p class="travel-note">Distances above are approximate driving miles and may vary with route and traffic conditions.</p>
+            </div>
         </div>
-        <div class="airports-grid">
 
-            <!-- SJC -->
-            <div class="airport-card">
-                <div class="airport-header">
-                    <div class="airport-code">SJC</div>
-                    <div>
-                        <div class="airport-name-line">San Jose International</div>
-                        <div class="airport-full-name">Norman Y. Mineta San José International Airport</div>
-                    </div>
+        <!-- Local Transit -->
+        <div class="tab-panel" id="tab-transit">
+            <div class="travel-eyebrow">Getting There &mdash; By Car</div>
+            <div class="travel-title">Local Transit</div>
+            <div class="travel-body">
+                <p>There are no practical public transportation options directly to the masjid.
+                Guests are encouraged to use rideshare or rental car services.</p>
+                <p><strong>BART (Bay Area Rapid Transit)</strong> is available from SFO and OAK airports
+                to the Fremont BART Station (~3 miles from the masjid). From the Fremont BART station,
+                guests can take a rideshare to the masjid.</p>
+                <p><strong>Local rideshare options include:</strong></p>
+                <div class="tags">
+                    <span class="tag">Uber</span>
+                    <span class="tag">Lyft</span>
                 </div>
-                <div class="airport-body">
-                    <div class="airport-stats">
-                        <div class="airport-stat"><div class="stat-val">12.8 mi</div><div class="stat-lbl">Distance</div></div>
-                        <div class="airport-stat"><div class="stat-val">~25 min</div><div class="stat-lbl">Drive Time</div></div>
-                    </div>
-                    <div class="airport-tags">
-                        <span class="tag">Closest Airport</span>
-                        <span class="tag">International</span>
-                        <span class="tag">Terminals A &amp; B</span>
-                    </div>
-                    <a href="https://maps.google.com/?saddr=San+Jose+International+Airport,+CA&daddr=1121+Old+Canyon+Rd,+Fremont,+CA+94536"
-                       target="_blank" rel="noopener" class="directions-btn">
-                        Get Directions to Masjid &rarr;
-                    </a>
+                <p><strong>Car rental services at all three airports:</strong></p>
+                <div class="tags">
+                    <span class="tag">Enterprise</span>
+                    <span class="tag">Hertz</span>
+                    <span class="tag">Turo</span>
+                    <span class="tag">National</span>
+                    <span class="tag">Avis</span>
                 </div>
+                <p style="margin-top:1rem">
+                    Visitors driving in California should carry a valid foreign driver license
+                    and an International Driving Permit issued in their country of residence.
+                </p>
             </div>
-
-            <!-- OAK -->
-            <div class="airport-card">
-                <div class="airport-header">
-                    <div class="airport-code">OAK</div>
-                    <div>
-                        <div class="airport-name-line">Oakland International</div>
-                        <div class="airport-full-name">Oakland International Airport</div>
-                    </div>
-                </div>
-                <div class="airport-body">
-                    <div class="airport-stats">
-                        <div class="airport-stat"><div class="stat-val">16.7 mi</div><div class="stat-lbl">Distance</div></div>
-                        <div class="airport-stat"><div class="stat-val">~35 min</div><div class="stat-lbl">Drive Time</div></div>
-                    </div>
-                    <div class="airport-tags">
-                        <span class="tag">BART Access</span>
-                        <span class="tag">International</span>
-                        <span class="tag">Budget Carriers</span>
-                    </div>
-                    <a href="https://maps.google.com/?saddr=Oakland+International+Airport,+CA&daddr=1121+Old+Canyon+Rd,+Fremont,+CA+94536"
-                       target="_blank" rel="noopener" class="directions-btn">
-                        Get Directions to Masjid &rarr;
-                    </a>
-                </div>
-            </div>
-
-            <!-- SFO -->
-            <div class="airport-card">
-                <div class="airport-header">
-                    <div class="airport-code">SFO</div>
-                    <div>
-                        <div class="airport-name-line">San Francisco International</div>
-                        <div class="airport-full-name">San Francisco International Airport</div>
-                    </div>
-                </div>
-                <div class="airport-body">
-                    <div class="airport-stats">
-                        <div class="airport-stat"><div class="stat-val">22.5 mi</div><div class="stat-lbl">Distance</div></div>
-                        <div class="airport-stat"><div class="stat-val">~40 min</div><div class="stat-lbl">Drive Time</div></div>
-                    </div>
-                    <div class="airport-tags">
-                        <span class="tag">Most International Flights</span>
-                        <span class="tag">BART Access</span>
-                        <span class="tag">4 Terminals</span>
-                    </div>
-                    <a href="https://maps.google.com/?saddr=San+Francisco+International+Airport,+CA&daddr=1121+Old+Canyon+Rd,+Fremont,+CA+94536"
-                       target="_blank" rel="noopener" class="directions-btn">
-                        Get Directions to Masjid &rarr;
-                    </a>
-                </div>
-            </div>
-
         </div>
-    </div>
-</section>
 
-<!-- ── ACCOMMODATION ───────────────────────────────── -->
-<section class="section section-alt" id="accommodation">
-    <div class="container">
-        <div class="section-header">
-            <p class="section-label">Stay</p>
-            <h2 class="section-title">Nearby Accommodation</h2>
-            <p class="section-desc">
-                Several hotels are conveniently located near Masjid e Mohammedi.
-                We recommend booking early as availability may be limited during Ashara.
-            </p>
-        </div>
-        <div class="hotels-grid">
-
-            <div class="hotel-card">
-                <div class="hotel-stars">★★★★</div>
-                <div class="hotel-name">Marriott Fremont Silicon Valley</div>
-                <div class="hotel-address">46100 Landing Pkwy, Fremont, CA 94538</div>
-                <span class="hotel-dist">📍 ~3.5 mi from Masjid</span>
+        <!-- Accommodation -->
+        <div class="tab-panel" id="tab-hotels">
+            <div class="travel-eyebrow">Hotels and Local Stays</div>
+            <div class="travel-title">Accommodation</div>
+            <div class="travel-body">
+                <p>Recommended hotels near the masjid, listed with approximate driving distance.
+                There will be no daily transit provided to or from hotels, so guests will need to
+                rideshare, taxi, or drive to the masjid area each day.</p>
             </div>
-
-            <div class="hotel-card">
-                <div class="hotel-stars">★★★★</div>
-                <div class="hotel-name">Hyatt Place Fremont / Silicon Valley</div>
-                <div class="hotel-address">3799 Mowry Ave, Fremont, CA 94538</div>
-                <span class="hotel-dist">📍 ~4 mi from Masjid</span>
+            <div class="hotel-grid">
+                <div class="hotel-card">
+                    <div class="hotel-meta">
+                        <div class="hotel-name">Marriott Fremont Silicon Valley</div>
+                        <span class="hotel-dist-badge">~3.5 mi</span>
+                    </div>
+                    <div class="hotel-address">46100 Landing Pkwy, Fremont, CA 94538</div>
+                    <a href="https://www.marriott.com/hotels/travel/sfofr-fremont-marriott-silicon-valley/" target="_blank" rel="noopener" class="hotel-link">Visit hotel website &rarr;</a>
+                </div>
+                <div class="hotel-card">
+                    <div class="hotel-meta">
+                        <div class="hotel-name">Hyatt Place Fremont / Silicon Valley</div>
+                        <span class="hotel-dist-badge">~4 mi</span>
+                    </div>
+                    <div class="hotel-address">3799 Mowry Ave, Fremont, CA 94538</div>
+                    <a href="https://www.hyatt.com/hyatt-place/en-US/sfozf-hyatt-place-fremont-silicon-valley" target="_blank" rel="noopener" class="hotel-link">Visit hotel website &rarr;</a>
+                </div>
+                <div class="hotel-card">
+                    <div class="hotel-meta">
+                        <div class="hotel-name">Homewood Suites by Hilton Fremont</div>
+                        <span class="hotel-dist-badge">~3 mi</span>
+                    </div>
+                    <div class="hotel-address">39500 Stevenson Pl, Fremont, CA 94539</div>
+                    <a href="https://www.hilton.com/en/hotels/sfofrhw-homewood-suites-fremont/" target="_blank" rel="noopener" class="hotel-link">Visit hotel website &rarr;</a>
+                </div>
+                <div class="hotel-card">
+                    <div class="hotel-meta">
+                        <div class="hotel-name">Extended Stay America &ndash; Fremont</div>
+                        <span class="hotel-dist-badge">~4 mi</span>
+                    </div>
+                    <div class="hotel-address">5779 Central Ave, Newark, CA 94560</div>
+                    <a href="https://www.extendedstayamerica.com/hotels/ca/fremont" target="_blank" rel="noopener" class="hotel-link">Visit hotel website &rarr;</a>
+                </div>
+                <div class="hotel-card">
+                    <div class="hotel-meta">
+                        <div class="hotel-name">Aloft Silicon Valley</div>
+                        <span class="hotel-dist-badge">~5 mi</span>
+                    </div>
+                    <div class="hotel-address">1200 Gadwall Ct, Newark, CA 94560</div>
+                    <a href="https://www.marriott.com/hotels/travel/sfona-aloft-silicon-valley/" target="_blank" rel="noopener" class="hotel-link">Visit hotel website &rarr;</a>
+                </div>
+                <div class="hotel-card">
+                    <div class="hotel-meta">
+                        <div class="hotel-name">Comfort Inn Fremont</div>
+                        <span class="hotel-dist-badge">~5 mi</span>
+                    </div>
+                    <div class="hotel-address">5400 Mowry Ave, Fremont, CA 94538</div>
+                    <a href="https://www.choicehotels.com/california/fremont/comfort-inn-hotels" target="_blank" rel="noopener" class="hotel-link">Visit hotel website &rarr;</a>
+                </div>
+                <div class="hotel-card">
+                    <div class="hotel-meta">
+                        <div class="hotel-name">Holiday Inn Express &amp; Suites Fremont</div>
+                        <span class="hotel-dist-badge">~4.5 mi</span>
+                    </div>
+                    <div class="hotel-address">46200 Landing Pkwy, Fremont, CA 94538</div>
+                    <a href="https://www.ihg.com/holidayinnexpress/hotels/us/en/fremont/sfofr/hoteldetail" target="_blank" rel="noopener" class="hotel-link">Visit hotel website &rarr;</a>
+                </div>
+                <div class="hotel-card">
+                    <div class="hotel-meta">
+                        <div class="hotel-name">Best Western Plus Fremont Inn</div>
+                        <span class="hotel-dist-badge">~5 mi</span>
+                    </div>
+                    <div class="hotel-address">46101 Warm Springs Blvd, Fremont, CA 94539</div>
+                    <a href="https://www.bestwestern.com/en_US/book/hotels-in-fremont/best-western-plus-fremont-inn/propertyCode.05547.html" target="_blank" rel="noopener" class="hotel-link">Visit hotel website &rarr;</a>
+                </div>
             </div>
-
-            <div class="hotel-card">
-                <div class="hotel-stars">★★★★</div>
-                <div class="hotel-name">Homewood Suites by Hilton Fremont</div>
-                <div class="hotel-address">39500 Stevenson Pl, Fremont, CA 94539</div>
-                <span class="hotel-dist">📍 ~3 mi from Masjid</span>
-            </div>
-
-            <div class="hotel-card">
-                <div class="hotel-stars">★★★</div>
-                <div class="hotel-name">Extended Stay America – Fremont</div>
-                <div class="hotel-address">46100 Fremont Blvd, Fremont, CA 94538</div>
-                <span class="hotel-dist">📍 ~4 mi from Masjid</span>
-            </div>
-
-            <div class="hotel-card">
-                <div class="hotel-stars">★★★</div>
-                <div class="hotel-name">Comfort Inn Fremont</div>
-                <div class="hotel-address">5400 Mowry Ave, Fremont, CA 94538</div>
-                <span class="hotel-dist">📍 ~5 mi from Masjid</span>
-            </div>
-
-            <div class="hotel-card">
-                <div class="hotel-stars">★★★</div>
-                <div class="hotel-name">Aloft Silicon Valley</div>
-                <div class="hotel-address">1200 Gadwall Ct, Newark, CA 94560</div>
-                <span class="hotel-dist">📍 ~5 mi from Masjid</span>
-            </div>
-
+            <p class="travel-note" style="margin-top:1.5rem">Distances above are approximate driving miles and may vary with route and traffic conditions.</p>
         </div>
     </div>
 </section>
 
-<!-- ── CONTACT ─────────────────────────────────────── -->
-<section class="section" id="contact">
+<!-- ── FAQ ────────────────────────────────────────── -->
+<section class="section section-white" id="faq">
     <div class="container">
-        <div class="section-header">
-            <p class="section-label">Reach Us</p>
-            <h2 class="section-title">Contact Fremont Jamaat</h2>
-            <p class="section-desc">
-                For inquiries regarding the Ashara relay, accommodation, or transportation
-                assistance, please reach out to the jamaat office.
-            </p>
+        <div class="section-eyebrow">Help</div>
+        <h2 class="section-title">General FAQ</h2>
+        <div class="faq-list">
+
+            <div class="faq-item">
+                <button class="faq-q" aria-expanded="false">
+                    Do I need a visa?
+                    <span class="chevron"></span>
+                </button>
+                <div class="faq-a">
+                    <div class="faq-a-inner">
+                        Visa and entry requirements vary by country and traveler. Please check the official
+                        <a href="https://travel.state.gov/content/travel/en/us-visas/tourism-visit.html" target="_blank" rel="noopener">U.S. Department of State visa guidance</a>
+                        to confirm whether you need a visa, ESTA approval, or other travel documents before making travel plans.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-q" aria-expanded="false">
+                    Where will parking be located?
+                    <span class="chevron"></span>
+                </button>
+                <div class="faq-a">
+                    <div class="faq-a-inner">
+                        Parking will be onsite at the masjid and offsite from the masjid campus.
+                        Further details will be shared closer to Ashara.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-q" aria-expanded="false">
+                    What weather should we expect?
+                    <span class="chevron"></span>
+                </button>
+                <div class="faq-a">
+                    <div class="faq-a-inner">
+                        The Fremont and Bay Area enjoys mild Mediterranean weather in June. Guests should plan
+                        for cool, foggy mornings that give way to pleasant afternoons. Daytime temperatures
+                        typically range from the mid-60s to mid-70s&deg;F (about 18&ndash;23&deg;C). The Bay Area
+                        is significantly cooler than inland California and Southern California, so guests from
+                        warmer climates should bring a light jacket or layer for evenings.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-q" aria-expanded="false">
+                    Is there connectivity / internet available?
+                    <span class="chevron"></span>
+                </button>
+                <div class="faq-a">
+                    <div class="faq-a-inner">
+                        Wi-Fi will be available at the masjid. You can also get a local prepaid SIM card
+                        at any of the three airports or at local stores (AT&amp;T, T-Mobile, Verizon).
+                        Internet is available at most public places including hotels and shopping areas.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-q" aria-expanded="false">
+                    What should I pack?
+                    <span class="chevron"></span>
+                </button>
+                <div class="faq-a">
+                    <div class="faq-a-inner">
+                        Bring a light jacket or layer for cool Bay Area evenings. Comfortable walking shoes are
+                        advised. Carry your ITS card and Raza letter. Bring medicines for existing conditions
+                        with a prescription from your local doctor. We also recommend bringing some cash —
+                        currency exchange is available at the airports but may carry higher fees.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-q" aria-expanded="false">
+                    Is healthcare available at the masjid?
+                    <span class="chevron"></span>
+                </button>
+                <div class="faq-a">
+                    <div class="faq-a-inner">
+                        Our local team of doctors will be available to help with basic healthcare concerns.
+                        Please carry medicines for any existing conditions and keep a prescription from your
+                        home doctor with your medications. Critical conditions requiring external treatment
+                        would need to be covered independently.
+                    </div>
+                </div>
+            </div>
+
         </div>
-        <div class="contact-wrap">
+    </div>
+</section>
+
+<!-- ── MASJID LOCATION MAP ────────────────────────── -->
+<section class="section" id="map">
+    <div class="container">
+        <div class="section-eyebrow">Navigation</div>
+        <h2 class="section-title">Masjid Location</h2>
+        <p class="section-desc" style="margin-bottom:1.75rem">
+            Masjid e Mohammedi is located in Fremont, CA with easy access from three major Bay Area airports.
+            Click any marker for details.
+        </p>
+        <div id="map-el"></div>
+        <div class="map-actions">
+            <a href="https://maps.google.com/?q=1121+Old+Canyon+Rd,+Fremont,+CA+94536"
+               target="_blank" rel="noopener" class="map-btn">
+                Open in Google Maps &rarr;
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ── CONTACT ────────────────────────────────────── -->
+<section class="section section-white" id="contact">
+    <div class="container">
+        <div class="section-eyebrow">Reach Us</div>
+        <h2 class="section-title">Contact Fremont Jamaat</h2>
+        <p class="section-desc" style="margin-bottom:2.5rem">
+            For inquiries regarding the Ashara relay, accommodation, or transportation assistance,
+            please reach out to the jamaat office.
+        </p>
+        <div class="contact-grid">
             <div>
-                <h3 class="contact-title">Jamaat Office</h3>
-
                 <div class="contact-item">
                     <div class="ci-icon">📍</div>
                     <div>
-                        <span class="ci-label">Address</span>
+                        <span class="ci-label">Masjid Address</span>
                         <span class="ci-value">Masjid e Mohammedi<br>1121 Old Canyon Rd, Fremont, CA 94536</span>
                     </div>
                 </div>
-
-                <div class="contact-item">
-                    <div class="ci-icon">📞</div>
-                    <div>
-                        <span class="ci-label">Phone</span>
-                        <span class="ci-value">(510) 794-7091</span>
-                    </div>
-                </div>
-
-                <div class="contact-item">
-                    <div class="ci-icon">🕌</div>
-                    <div>
-                        <span class="ci-label">Community</span>
-                        <span class="ci-value">Anjuman-e-Najmi, San Francisco<br>Dawoodi Bohra — Fremont, California</span>
-                    </div>
-                </div>
-
                 <div class="contact-item">
                     <div class="ci-icon">🗺️</div>
                     <div>
                         <span class="ci-label">Directions</span>
                         <span class="ci-value">
                             <a href="https://maps.google.com/?q=1121+Old+Canyon+Rd,+Fremont,+CA+94536"
-                               target="_blank" rel="noopener"
-                               style="color:var(--navy-light);font-weight:600;text-decoration:none;">
-                               Open in Google Maps &rarr;
-                            </a>
+                               target="_blank" rel="noopener">Open in Google Maps &rarr;</a>
                         </span>
                     </div>
                 </div>
             </div>
-
             <div id="contact-map"></div>
         </div>
     </div>
 </section>
 
-<!-- ── FOOTER ──────────────────────────────────────── -->
+<!-- ── FOOTER ─────────────────────────────────────── -->
 <footer>
-    <p>&copy; 1448H &nbsp;&middot;&nbsp; <span>Fremont Jamaat</span> &nbsp;&middot;&nbsp;
-       Ashara Mubaraka Relay &nbsp;&middot;&nbsp; Masjid e Mohammedi, Fremont, CA</p>
+    <p>
+        &copy; 1448H &nbsp;&middot;&nbsp;
+        <span class="gold">Fremont Jamaat</span> &nbsp;&middot;&nbsp;
+        Ashara Mubaraka 1448 Relay Center &nbsp;&middot;&nbsp;
+        Anjuman-e-Najmi, Fremont, CA
+    </p>
 </footer>
 
-<!-- ── LEAFLET JS ──────────────────────────────────── -->
+<!-- ── SCRIPTS ────────────────────────────────────── -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
-    const MASJID  = [37.5413, -121.9474];   // 1121 Old Canyon Rd, Fremont CA
-    const AIRPORTS = [
-        { code: 'SJC', label: 'San Jose International',         coords: [37.3626, -121.9290], dist: '12.8 mi' },
-        { code: 'OAK', label: 'Oakland International',          coords: [37.7213, -122.2208], dist: '16.7 mi' },
-        { code: 'SFO', label: 'San Francisco International',    coords: [37.6213, -122.3789], dist: '22.5 mi' },
-    ];
-
-    /* ---- custom icons ---- */
-    function makeIcon(emoji, bg, border, size) {
-        return L.divIcon({
-            html: `<div style="
-                background:${bg};border:3px solid ${border};
-                border-radius:50% 50% 50% 0;
-                width:${size}px;height:${size}px;
-                transform:rotate(-45deg);
-                display:flex;align-items:center;justify-content:center;
-                box-shadow:0 4px 14px rgba(0,0,0,.28)">
-                <span style="transform:rotate(45deg);font-size:${size*.5}px">${emoji}</span>
-            </div>`,
-            className: '',
-            iconSize:   [size, size],
-            iconAnchor: [size/2, size],
-            popupAnchor:[0, -size]
-        });
+/* ---- countdown ---- */
+const ASHARA = new Date('2026-06-26T10:00:00-07:00');
+function updateCD() {
+    const diff = ASHARA - Date.now();
+    if (diff <= 0) {
+        ['cd-days','cd-hours','cd-mins'].forEach(id => document.getElementById(id).textContent = '00');
+        return;
     }
+    document.getElementById('cd-days').textContent  = String(Math.floor(diff / 86400000)).padStart(2,'0');
+    document.getElementById('cd-hours').textContent = String(Math.floor(diff / 3600000 % 24)).padStart(2,'0');
+    document.getElementById('cd-mins').textContent  = String(Math.floor(diff / 60000 % 60)).padStart(2,'0');
+}
+updateCD();
+setInterval(updateCD, 60000);
 
-    const masjidIcon  = makeIcon('🕌', '#162450', '#c9a227', 38);
-    const airportIcon = makeIcon('✈️', '#b22234', '#0d1b3e', 32);
-
-    /* ---- main map ---- */
-    const map = L.map('map-container', { center: [37.52, -122.06], zoom: 10 });
-
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
-
-    /* Masjid marker */
-    L.marker(MASJID, { icon: masjidIcon }).addTo(map)
-        .bindPopup(`
-            <div style="font-family:Inter,sans-serif;min-width:210px">
-                <strong style="color:#162450;font-size:1rem">Masjid e Mohammedi</strong><br>
-                <small style="color:#888">Fremont Jamaat — Ashara 1448H Relay Centre</small>
-                <hr style="margin:8px 0;border-color:#eee">
-                <span style="font-size:.8rem">📍 1121 Old Canyon Rd, Fremont, CA 94536</span>
-            </div>`, { maxWidth: 270 })
-        .openPopup();
-
-    /* Airport markers + dashed lines */
-    AIRPORTS.forEach(a => {
-        L.marker(a.coords, { icon: airportIcon }).addTo(map)
-            .bindPopup(`
-                <div style="font-family:Inter,sans-serif;min-width:190px">
-                    <strong style="color:#c9a227;font-size:1.1rem">${a.code}</strong>
-                    <span style="color:#444;font-size:.9rem"> · ${a.label}</span>
-                    <hr style="margin:7px 0;border-color:#eee">
-                    <span style="color:#b22234;font-weight:700;font-size:.82rem">
-                        ✈️ ${a.dist} from Masjid
-                    </span>
-                </div>`, { maxWidth: 230 });
-
-        L.polyline([a.coords, MASJID], {
-            color: '#b22234', weight: 2, dashArray: '7 7', opacity: .55
-        }).addTo(map);
+/* ---- tabs ---- */
+document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
     });
+});
 
-    /* ---- mini contact map ---- */
-    const mini = L.map('contact-map', {
-        center: MASJID, zoom: 15,
-        zoomControl: false, scrollWheelZoom: false, dragging: false
+/* ---- FAQ accordion ---- */
+document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => {
+            i.classList.remove('open');
+            i.querySelector('.faq-q').setAttribute('aria-expanded','false');
+        });
+        if (!isOpen) {
+            item.classList.add('open');
+            btn.setAttribute('aria-expanded','true');
+        }
     });
+});
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; OpenStreetMap contributors'
-    }).addTo(mini);
+/* ---- map ---- */
+const MASJID   = [37.5413, -121.9474];
+const AIRPORTS = [
+    { code:'SJC', label:'San José International Airport',  coords:[37.3626,-121.9290], dist:'12.8 mi', drive:'~25 min' },
+    { code:'OAK', label:'Oakland International Airport',   coords:[37.7213,-122.2208], dist:'16.7 mi', drive:'~35 min' },
+    { code:'SFO', label:'San Francisco Intl Airport',      coords:[37.6213,-122.3789], dist:'22.5 mi', drive:'~40 min' },
+];
 
-    L.marker(MASJID, { icon: masjidIcon }).addTo(mini)
-        .bindPopup('<strong>Masjid e Mohammedi</strong><br>1121 Old Canyon Rd, Fremont CA')
-        .openPopup();
+function pin(emoji, bg, border, sz) {
+    return L.divIcon({
+        html: `<div style="background:${bg};border:3px solid ${border};border-radius:50% 50% 50% 0;
+               width:${sz}px;height:${sz}px;transform:rotate(-45deg);display:flex;align-items:center;
+               justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,.28)">
+               <span style="transform:rotate(45deg);font-size:${sz*.48}px">${emoji}</span></div>`,
+        className:'', iconSize:[sz,sz], iconAnchor:[sz/2,sz], popupAnchor:[0,-sz]
+    });
+}
+const masjidPin  = pin('🕌','#162450','#c9a227',38);
+const airportPin = pin('✈️','#b22234','#0d1b3e',32);
+
+const map = L.map('map-el', { center:[37.52,-122.06], zoom:10 });
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+
+L.marker(MASJID, { icon: masjidPin }).addTo(map)
+  .bindPopup(`<div style="font-family:Inter,sans-serif;min-width:210px">
+    <strong style="color:#162450">Masjid e Mohammedi</strong><br>
+    <small style="color:#888">Fremont Jamaat — Ashara 1448H Relay Center</small>
+    <hr style="margin:7px 0;border-color:#eee">
+    <span style="font-size:.8rem">📍 1121 Old Canyon Rd, Fremont, CA 94536</span>
+  </div>`, { maxWidth:270 }).openPopup();
+
+AIRPORTS.forEach(a => {
+    L.marker(a.coords, { icon: airportPin }).addTo(map)
+      .bindPopup(`<div style="font-family:Inter,sans-serif;min-width:190px">
+        <strong style="color:#b22234;font-size:1.05rem">${a.code}</strong>
+        <span style="color:#444;font-size:.88rem"> · ${a.label}</span>
+        <hr style="margin:7px 0;border-color:#eee">
+        <span style="color:#162450;font-weight:700;font-size:.82rem">✈️ ${a.dist} · ${a.drive} from Masjid</span>
+      </div>`, { maxWidth:240 });
+    L.polyline([a.coords, MASJID], { color:'#b22234', weight:2, dashArray:'7 7', opacity:.5 }).addTo(map);
+});
+
+/* ---- mini contact map ---- */
+const mini = L.map('contact-map', { center:MASJID, zoom:15, zoomControl:false, scrollWheelZoom:false, dragging:false });
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution:'&copy; OpenStreetMap contributors'
+}).addTo(mini);
+L.marker(MASJID, { icon: masjidPin }).addTo(mini)
+  .bindPopup('<strong>Masjid e Mohammedi</strong><br>1121 Old Canyon Rd, Fremont CA').openPopup();
 </script>
 </body>
 </html>
